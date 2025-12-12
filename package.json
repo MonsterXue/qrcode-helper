@@ -1,0 +1,30 @@
+{
+  "name": "qrcode-helper",
+  "version": "1.0.0",
+  "description": "A Chrome extension for demonstration purposes.",
+  "scripts": {
+    "dev": "rollup -c --watch",
+    "build": "rollup -c",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "keywords": [
+    "chrome",
+    "extension"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "@types/chrome": "^0.1.31",
+    "@zxing/browser": "^0.1.5"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "@rollup/plugin-terser": "^0.4.4",
+    "less": "^4.4.2",
+    "rollup": "^4.53.3",
+    "rollup-plugin-postcss": "^4.0.2"
+  }
+}

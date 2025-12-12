@@ -1,0 +1,36 @@
+{
+  "name": "qrcode-helper",
+  "description": "二维码助手",
+  "version": "1.0",
+  "manifest_version": 3,
+  "permissions": ["tabs", "activeTab"],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "src/icons/icon.png",
+      "48": "src/icons/icon.png",
+      "128": "src/icons/icon.png"
+    }
+  },
+  "background": {
+    "service_worker": "dist/background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["dist/content_scripts/content.js"]
+    }
+  ],
+  "icons": {
+    "16": "src/icons/icon.png",
+    "48": "src/icons/icon.png",
+    "128": "src/icons/icon.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["src/styles/popup.css", "dist/*"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "host_permissions": ["<all_urls>"]
+}
