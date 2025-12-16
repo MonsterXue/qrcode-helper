@@ -66,7 +66,7 @@ function createPopoverDom(text, isIframe) {
 function setTriggerEvents(target, popover, instance) {
     const show = () => {
         popover.classList.add(`${prefixCls}-popover--show`)
-        instance.update()
+        instance?.update()
     }
     const hide = () => popover.classList.remove(`${prefixCls}-popover--show`)
     target.addEventListener('mouseleave', hide)
@@ -101,18 +101,21 @@ async function renderCodeContent(text, target) {
     })
 
     setTriggerEvents(target, wrapper, instance)
-    setTriggerEvents(wrapper, wrapper, instance)
+    setTriggerEvents(wrapper, wrapper)
 }
 
 async function decodeQrCode(img) {
     if (!checkQrAspectRatio(img)) return
 
-    img.crossOrigin = 'anonymous'
-    await img.decode()
+    try {
+        img.crossOrigin = 'anonymous'
+        await img.decode()
 
-    decoder.decodeFromImageElement(img).then(result => {
+        const result = await decoder.decodeFromImageElement(img)
         renderCodeContent(result.text, img)
-    }).catch(() => { })
+    } catch {
+        img.removeAttribute('crossOrigin')
+    }
 }
 
 document.addEventListener('mouseover', async e => {
